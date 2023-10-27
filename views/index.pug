@@ -1,5 +1,10 @@
 extends layout
-
+ 
 block content
   h1= title
-  p Welcome to #{title}
+  p Welcome to Siva Priya web application page working on pug within this lab #{title}
+ 
+  button(type="button", class="btn btn-secondary" onClick="doBump()") Press  me
+ 
+  script.
+    console.log("running on http://localhost:3000/")
