@@ -11,4 +11,14 @@ block content
           p cost: #{vehicle.cost}
           p company: #{vehicle.company}
   br
-  
+  h5= 'Buy'
+
+  div(class="container-fluid")
+    each vehicle,index in results
+      div(class="row", onclick=`buy(${index})`)
+        div(class="col-sm-2") <br>vehicle #{index}: #{vehicle.vehicle} Address:#{vehicle.cost} Rating:#{vehicle.company}
+  script.
+        function buy(price){
+          alert('You purchased item ' + price)
+        
+        }
