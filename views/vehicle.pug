@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  .container-fluid
+    .row
+      - for (let vehicle of results)
+        .col-sm-2
+          h2= vehicle.vehicle_name
+          p vehicle Type: #{vehicle.vehicle_type}
+          p cost: #{vehicle.cost}
+          p company: #{vehicle.company}
+  br
+  

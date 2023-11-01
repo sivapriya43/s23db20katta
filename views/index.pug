@@ -4,7 +4,19 @@ block content
   h1= title
   p Welcome to Siva Priya web application page working on pug within this lab #{title}
  
-  button(type="button", class="btn btn-secondary" onClick="doBump()") Press  me
- 
+  button(type="button", class="btn btn-secondary" onClick="goFaster()") Press  me
+  br
+  div(id="faster") Increase the speed
+  br
   script.
-    console.log("running on http://localhost:3000/")
+
+    var mph=20;
+    var change=1;
+    function goFaster() {
+      mph =mph + change ;
+      change =change +1;
+      document.getElementById("faster").innerHTML=`MPH ${mph} with change ${change}.`;
+    }
+  hr
+  a(href='/vehicle') vehicle_Link
+
