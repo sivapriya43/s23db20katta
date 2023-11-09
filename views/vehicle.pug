@@ -2,23 +2,11 @@ extends layout
 
 block content
   h1= title
-  .container-fluid
-    .row
-      - for (let vehicle of results)
-        .col-sm-2
-          h2= vehicle.vehicle_name
-          p vehicle Type: #{vehicle.vehicle_type}
-          p cost: #{vehicle.cost}
-          p company: #{vehicle.company}
-  br
-  h5= 'Buy'
 
-  div(class="container-fluid")
-    each vehicle,index in results
-      div(class="row", onclick=`buy(${index})`)
-        div(class="col-sm-2") <br>vehicle #{index}: #{vehicle.vehicle} Address:#{vehicle.cost} Rating:#{vehicle.company}
-  script.
-        function buy(price){
-          alert('You purchased item ' + price)
-        
-        }
+  .row
+    each vehicle in results
+      .col-3 
+        ul
+          li vehicle type: #{vehicle.vehicle_type}
+          li vehicle cost : #{vehicle.cost}
+          li vehicle company : #{vehicle.company}
