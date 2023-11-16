@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1= title
+  - let vehicleid = toShow._id
+  - let vehicle_type = toShow.vehicle_type
+  - let cost = toShow.cost
+  - let company  = toShow.company
+
+  div.container.mt-4
+    table.table.table-bordered
+      tbody
+        tr
+          th(style='color: #007BFF;') Vehicle ID:
+          td(style='color: #343a40;') #{vehicleid}
+
+        tr
+          th(style='color: #28a745;') Vehicle Type:
+          td(style='color: #343a40;') #{vehicle_type}
+
+        tr
+          th(style='color: #dc3545;') Vehicle Cost:
+          td(style='color: #343a40;') #{cost}
+
+        tr
+          th(style='color: #ffc107;') Vehicle Size:
+          td(style='color: #343a40;') #{company}

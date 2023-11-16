@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  h1= title
+  form(id='vehicleForm', action="/resource/vehicles", method="POST")
+    div.form-group
+      label.vehicleAttr(for='vehicle_type') vehicle type
+      input#vehicle_type(type='text', name='vehicle_type')
+    div.form-group
+      label.vehicleAttr(for='cost') vehicle cost
+      input#cost(type='number', name='cost')
+    div.form-group
+      label.vehicleAttr(for='company') vehicle company
+      input#company(type='text', name='company')
+    input(type="submit")
+
+  script.
+    document.forms['vehicleForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show the user that the form is being submitted
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.text (); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Save succeeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Save failed " + error )
+      });
+    });

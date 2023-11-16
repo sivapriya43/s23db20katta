@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  h1= title
+  - if (toShow)
+    - let costumeid = toShow._id
+    - let costume_type = toShow.costume_type
+    - let costumecost = toShow.cost
+    - let costumesize = toShow.size
+
+    div.row(class='mb-2')
+      div.mr-1 ID is
+      div #{costumeid}
+
+    - let actionid = "/resource/vehicles/" + costumeid
+    form(id='CostumeForm', action=actionid, method="PUT")
+      div.form-group
+        label.vehicleAttr(for='vehicle_type') Vehicle type
+        input#costume_type(type='text', name='vehicle_type', value=costume_type)
+      div.form-group
+        label.vehicleAttr(for='cost') Vehicle cost
+        input#size(type='number', name='cost', value=cost)
+      div.form-group
+        label.vehicleAttr(for='company') Vehicle company
+        input#cost(type='text', name='company', value=costume_cost)
+      input(type="submit")
+
+    script.
+      document.forms['CostumeForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show the user that the form is being submitted
+        fetch(event.target.action, {
+          method: 'PUT',
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Update succeeded")
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Update failed " + error)
+        });
+      });
+  - else
+    p ToShow is null or undefined. Handle this case appropriately.
